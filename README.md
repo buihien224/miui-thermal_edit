@@ -1,5 +1,5 @@
 # miui-thermal_edit
-Remake miui-thermal base on https://github.com/helloklf/vtools/tree/master/mi-thermal-config
+Remake miui-thermal editor base on https://github.com/helloklf/vtools/tree/master/mi-thermal-config
 
 **Requirement**
 1. Make sure you have Debian base ditros
@@ -10,10 +10,10 @@ Remake miui-thermal base on https://github.com/helloklf/vtools/tree/master/mi-th
 > sudo apt-get install -y zip unzip android-tools-adb android-tools-fastboot
 
 **Decode**
-> ./thermal d
+>      ./thermal d
 
 **Encode**
-> ./thermal e
+>      ./thermal e
 
 **Encode and Install Magisk Module**
-> ./thermal e i
+>      ./thermal e i
