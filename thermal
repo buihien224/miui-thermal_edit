@@ -1,0 +1,86 @@
+#!/bin/bash
+dir=$(pwd)
+
+
+run () {
+	if [[ $1 == "d" ]]; then
+		echo "Decode mode :"
+		if [[ -d D ]]; then
+			rm -rf D/*
+		else
+			mkdir D
+		fi
+		./bin/miui-thermal
+
+	fi
+
+	if [[ $1 == "e" ]]; then
+		if [[ ! -d D ]]; then
+			echo "No decoded file, decode first"
+		else
+			echo "Encode mode :"
+			if [[ -d E ]]; then
+				rm -rf E/*
+			else
+				mkdir E
+			fi
+			./bin/miui-thermal -d=false
+
+			echo ""
+			echo "Make Magisk module for Tesing "
+
+			da=$(date "+%d%m%y")
+			cp bin/miuivs_mod_simple.zip magisk_thermal_$da.zip
+			mkdir -p system/vendor/etc
+			cp E/* system/vendor/etc
+			zip -ur magisk_thermal_$da.zip system >/dev/null 2>&1
+			rm -rf E system
+			if [[ $2 == "i" ]]; then
+				echo "Press Y to install magisk_thermal_$da.zip"
+				read input
+				if [ $input == "Y" -o $input == "y" ]; then
+					adb push $dir/magisk_thermal_$da.zip /data/local/tmp >/dev/null 2>&1
+					adb shell "su -c magisk --install-module /data/local/tmp/magisk_thermal_$da.zip"
+					adb shell reboot
+				fi
+			fi
+
+
+		fi
+	fi
+
+
+	if [[ $1 == "f" ]]; then
+		adb shell "su -c magisk --remove-modules"
+	fi
+
+
+}
+
+echo "MIUI Thermal Ecode and Decode remake for Linux by BHLNK"
+echo "Author : helloklf"
+echo "Checking requirement"
+if [[ ! -f $dir/bin/miui-thermal ]]; then
+	echo "> Missing miui-thermal binary, downloading"
+	#wget 
+else
+	if [[  ! -f input/*conf ]]; then
+		if [[ !( $1 == "d" || $1 == "e" ) ]]; then
+			echo "Re-run : $0 d or $0 e "
+		else
+			echo "All OK !"
+			echo ""
+			run $1
+		fi
+	else
+		echo "> Missing input, put thermal config under input folder"
+		if [[ ! -d input ]]; then
+			mkdir input
+		fi
+	fi
+
+fi
+
+
+
+
