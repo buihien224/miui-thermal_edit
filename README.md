@@ -10,10 +10,14 @@ Remake miui-thermal editor base on https://github.com/helloklf/vtools/tree/maste
 >      sudo apt-get install -y zip unzip android-tools-adb android-tools-fastboot
 
 **Decode**
+
+`Put thermal*.conf under "input" folder`
 >      ./thermal d
 
 **Encode**
+`Must run Decode at first`
 >      ./thermal e
 
 **Encode and Install Magisk Module**
+`Remember give Root permission in your phone`
 >      ./thermal e i
