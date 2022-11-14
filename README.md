@@ -15,9 +15,11 @@ Remake miui-thermal editor base on https://github.com/helloklf/vtools/tree/maste
 >      ./thermal d
 
 **Encode**
+
 `Must run Decode at first`
 >      ./thermal e
 
 **Encode and Install Magisk Module**
+
 `Remember give Root permission in your phone`
 >      ./thermal e i
