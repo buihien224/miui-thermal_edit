@@ -7,7 +7,7 @@ Remake miui-thermal editor base on https://github.com/helloklf/vtools/tree/maste
 3. Make sure you has setup before Run
 
 **Setup**
-> sudo apt-get install -y zip unzip android-tools-adb android-tools-fastboot
+>      sudo apt-get install -y zip unzip android-tools-adb android-tools-fastboot
 
 **Decode**
 >      ./thermal d
